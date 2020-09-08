@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="testTables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码
+            tp:
+                connectionURL="jdbc:mysql://119.3.13.92:3306/taiping_life"
+                userId="root"
+                password="Qmact@6688"
+
+            blog:
+                 connectionURL="jdbc:mysql://localhost:3306/ex-blog"
+                 userId="root"
+                 password="admin"
+
+
+        -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/ex-blog"
+                        userId="root"
+                        password="admin"
+                        >
+        </jdbcConnection>
+        <!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+            connectionURL="jdbc:mysql://119.3.77.152:3306/homer_product" userId="root"
+            password="Qmact@6688">
+        </jdbcConnection>-->
+
+        <!-- <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+            connectionURL="jdbc:oracle:thin:@localhost:1521:ORCL"
+            userId="xxx"
+            password="123456">
+        </jdbcConnection> -->
+
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+            NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- targetProject:生成PO类的位置
+            "com.blog.model"
+            "com.taiping.tpbb.model"
+        -->
+        <javaModelGenerator targetPackage="com.blog.model"
+                            targetProject=".\src">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!-- targetProject:mapper映射文件生成的位置
+            "com.blog.mapper"
+            "com.taiping.tpbb.mapper"
+        -->
+        <sqlMapGenerator targetPackage="com.blog.mapper"
+                         targetProject=".\src">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+        <!-- targetPackage：mapper接口生成的位置
+            "com.taiping.tpbb.mapper"
+            "com.blog.mapper"
+         -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.blog.mapper"
+                             targetProject=".\src">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+        <!-- Blog -->
+        <table tableName="acc_role_relation" schema="AccRoleRelation">
+            <columnOverride column="rel_id" javaType="Long" jdbcType="BIGINT" />
+        </table>
+
+        <table tableName="account" schema="Account">
+            <columnOverride column="acc_id" javaType="Long" jdbcType="BIGINT" />
+        </table>
+
+        <table tableName="diary" schema="Diary">
+            <columnOverride column="dir_context" jdbcType="VARCHAR" />
+            <columnOverride column="dir_summmary" jdbcType="VARCHAR" />
+        </table>
+
+        <table tableName="permission" schema="Permission">
+            <columnOverride column="per_id" javaType="Long" jdbcType="BIGINT" />
+        </table>
+
+        <table tableName="role" schema="Role">
+            <columnOverride column="role_id" javaType="Long" jdbcType="BIGINT" />
+        </table>
+
+        <table tableName="role_per_relation" schema="RolePermissionRelation">
+            <columnOverride column="rel_id" javaType="Long" jdbcType="BIGINT" />
+        </table>
+
+        <table tableName="schedule" schema="Schedule">
+            <columnOverride column="sch_text"  jdbcType="VARCHAR" />
+            <columnOverride column="sch_summary"  jdbcType="VARCHAR" />
+        </table>
+
+        <table tableName="study_note" schema="StudyNote">
+            <columnOverride column="note_url" jdbcType="VARCHAR" />
+            <columnOverride column="note_summary" jdbcType="VARCHAR" />
+        </table>
+
+        <table tableName="user" schema="User">
+            <columnOverride column="user_id" javaType="Long" jdbcType="BIGINT" />
+        </table>
+
+
+    </context>
+</generatorConfiguration>

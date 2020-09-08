@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 数据库驱动 -->
+    <context id="MyBatisGenerator" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接URL，用户名、密码 -->
+        <jdbcConnection
+                driverClass="com.mysql.jdbc.Driver"
+                connectionURL="jdbc:mysql://119.3.13.92:3306/taiping_life"
+                userId="root"
+                password="Qmact@6688">
+            <!--MySQL 8.x 需要指定服务器的时区 -->
+            <property name="serverTimezone" value="UTC"/>
+            <!--MySQL 不支持 schema 或者 catalog 所以需要添加这个 -->
+            <!--参考 : http://www.mybatis.org/generator/usage/mysql.html -->
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 生成JavaBean的包名和位置 -->
+        <javaModelGenerator targetPackage="com.taiping.tpbb.ergo.model"
+                            targetProject="TP-PCS\src\main\java">
+            <!-- 是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="true"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- 生成映射文件的包名和位置 -->
+        <sqlMapGenerator targetPackage="mybatis.ergo"
+                         targetProject="TP-PCS\src\main\resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.taiping.tpbb.ergo.mapper"
+                             targetProject="TP-PCS\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名 -->
+        <!-- xxxExample 生成有关Example的操作 -->
+        <!-- http://www.mybatis.org/generator/configreference/table.html -->
+        <!--
+        attendance,
+        attendance_calendar,
+        attendance_info,
+        attendance_set,
+        attendance_task
+        -->
+        <table catalog="taiping_life" tableName="ergo_policy"
+               domainObjectName="ErgoPolicy"
+               enableInsert="true"
+               enableDeleteByPrimaryKey="true"
+               enableUpdateByPrimaryKey="true"
+               enableSelectByPrimaryKey="true"
+               modelType="flat">
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+        </table>
+        <!--
+                    enableCountByExample="false"
+                    enableUpdateByExample="false"
+                    enableDeleteByExample="false"
+                    enableSelectByExample="false"
+                    selectByExampleQueryId="false"
+        -->
+    </context>
+</generatorConfiguration>
